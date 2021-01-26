@@ -1,0 +1,16 @@
+Index: app/src/main/java/com/szchoiceway/jnidemo20201117/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/szchoiceway/jnidemo20201117/MainActivity.java	(revision 60b28a56fc9637ac32b336e00c4ffd0b8387b2d9)
++++ app/src/main/java/com/szchoiceway/jnidemo20201117/MainActivity.java	(date 1611630353301)
+@@ -20,7 +20,7 @@
+ 
+         // Example of a call to a native method
+         TextView tv = findViewById(R.id.sample_text);
+-        tv.setText(objectArrayFromJni()[3]+"");
++        tv.setText(objectArrayFromJni()[4]+"");
+     }
+ 
+     /**

@@ -1,7 +1,6 @@
 #include <jni.h>
 #include <android/log.h>
-
-
+#include <string>
 
 static const char *TAG="native-lib";
 #define LOGI(fmt, args...) __android_log_print(ANDROID_LOG_INFO,  TAG, fmt, ##args)
@@ -10,11 +9,78 @@ static const char *TAG="native-lib";
 
 
 
+extern "C" JNIEXPORT jstring JNICALL
+stringFromJNI(JNIEnv *env, jobject thiz) {
+    std::string hello = "Hello from C++";
+    std::string hello1 = "fasfadfadfadfadfadfadfdafdafad";
+    // 1. 获取 thiz 的 class，也就是 java 中的 Class 信息
+    jclass thisclazz = env->GetObjectClass(thiz);
+    // 2. 根据 Class 获取 getClass 方法的 methodID，第三个参数是签名(params)return
+    jmethodID mid_getClass = env->GetMethodID(thisclazz, "getClass", "()Ljava/lang/Class;");
+    // 3. 执行 getClass 方法，获得 Class 对象
+    jobject clazz_instance = env->CallObjectMethod(thiz, mid_getClass);
+    // 4. 获取 Class 实例
+    jclass clazz = env->GetObjectClass(clazz_instance);
+    // 5. 根据 class  的 methodID
+    jmethodID mid_getName = env->GetMethodID(clazz, "getName", "()Ljava/lang/String;");
+    // 6. 调用 getName 方法
+    auto name = static_cast<jstring>(env->CallObjectMethod(clazz_instance, mid_getName));
+    LOGE("class name:%s", env->GetStringUTFChars(name, nullptr));
+
+    // 7. 释放资源
+    env->DeleteLocalRef(thisclazz);
+    env->DeleteLocalRef(clazz);
+    env->DeleteLocalRef(clazz_instance);
+    env->DeleteLocalRef(name);
+
+    return env->NewStringUTF(hello1.c_str());
+
+}
+
+
+//#ifndef JNITUTORIAL_EXTRA_H
+//#define JNITUTORIAL_EXTRA_H
+const char * getString(){
+    return "string from extra";
+}
+//#endif //JNITUTORIAL_EXTRA_H
+
+extern "C" JNIEXPORT void JNICALL callPerson(JNIEnv* env,jobject jobject1)
+{
+
+    // 1. 获取 Class
+    jclass pClazz = env->FindClass("com/szchoiceway/jnidemo20201117/Person");
+    // 2. 获取构造方法，方法名固定为<init>
+    jmethodID constructID = env->GetMethodID(pClazz,"<init>","(ILjava/lang/String;)V");
+    if(constructID == nullptr){
+        return;
+    }
+    // 3. 创建一个 Person 对象
+    jstring name = env->NewStringUTF("alex");
+    jobject person = env->NewObject(pClazz,constructID,1,name);
+
+    jmethodID printId = env->GetMethodID(pClazz,"print","()V");
+    if(printId == nullptr){
+        return;
+    }
+    env->CallVoidMethod(person,printId);
+
+    // 4. 释放资源
+    env->DeleteLocalRef(name);
+    env->DeleteLocalRef(pClazz);
+
+
+
+}
+
+
+
+
+
 jstring helloWorld(JNIEnv * env, __unused jobject thiz){
 
-    jstring str = env->NewStringUTF("hello jni glkdsghsdlkghdslkghdslghdslgh");
-
-    return str;
+      std::string s=getString();
+    return env->NewStringUTF(s.c_str());
 
 }
 
@@ -146,6 +212,8 @@ static JNINativeMethod gMethods[] = {
         {"booleanFromJni", "()Z", (void*)booleanFromJni},
         {"intArrayFromJni", "()[I", (void*)intArrayFromJni},
         {"objectArrayFromJni", "()[Ljava/lang/String;", (void*)objectArrayFromJni},
+        {"stringFromJNI", "()Ljava/lang/String;", (void*)stringFromJNI},
+        {"callPerson", "()V", (void*)callPerson},
 };
 
 
@@ -153,7 +221,7 @@ static int registerNativeMethods(JNIEnv* env)
 
 {
     jclass clazz;
-    clazz = env->FindClass("com/szchoiceway/jnidemo20201117/MainActivity");
+    clazz = env->FindClass("com/szchoiceway/jnidemo20201117/JniTest");
     if (clazz == nullptr) {
         return JNI_FALSE;
     }
