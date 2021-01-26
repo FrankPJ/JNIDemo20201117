@@ -2,6 +2,12 @@
 #include <android/log.h>
 #include <string>
 #include <extra.h>
+#include <classC.h>
+
+extern "C"{
+#include <c_extra.h>
+}
+
 
 static const char *TAG="native-lib";
 #define LOGI(fmt, args...) __android_log_print(ANDROID_LOG_INFO,  TAG, fmt, ##args)
@@ -72,12 +78,16 @@ extern "C" JNIEXPORT void JNICALL callPerson(JNIEnv* env,jobject jobject1)
 
 
 
+extern "C" JNIEXPORT jstring JNICALL
+helloWorld(JNIEnv * env, __unused jobject thiz){
 
-jstring helloWorld(JNIEnv * env, __unused jobject thiz){
-
+//    const classC &c = classC();
+    
+//      std::string s=c.str;
       std::string s=getString();
+    std::string s1= getStringFromC();
 //      std::string s="getString()";
-    return env->NewStringUTF(s.c_str());
+    return env->NewStringUTF(s1.c_str());
 
 }
 
