@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.choiceway.calibrate"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+    }
+
+    signingConfigs {
+        config {
+            keyAlias 'platform'
+            keyPassword 'zxw168169'
+            storeFile file("../debug.keystore")
+            storePassword 'zxw168169'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+            aaptOptions.cruncherEnabled = false
+            aaptOptions.useNewCruncher = false
+        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.android.javaVersion
+        targetCompatibility rootProject.ext.android.javaVersion
+    }
+
+    sourceSets{
+
+        main{
+            res.srcDirs = ['res']
+            java.srcDirs = ['src']
+            manifest.srcFile "AndroidManifest.xml"
+
+            jni.srcDirs = ['jni'] //disable automatic ndk-build call
+        }
+
+        release {
+            manifest.srcFile "AndroidManifest.xml"
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "jni/calibrate/CMakeLists.txt"
+            version "3.10.2"
+        }
+    }
+}

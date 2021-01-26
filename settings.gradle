@@ -1,0 +1,3 @@
+include ':app'
+include ':calibrate'
+rootProject.name = "JNIDemo20201117"

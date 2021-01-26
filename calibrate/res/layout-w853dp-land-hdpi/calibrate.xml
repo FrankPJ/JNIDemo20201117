@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+           <ImageView
+               android:background="@drawable/calibrate_bg"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"/>
+            <ImageView
+                android:layout_marginLeft="104px"
+                android:layout_marginTop="48px"
+                android:id="@+id/LeftTop"
+                android:layout_width="49px"
+                android:layout_height="49px"
+                android:scaleType="fitCenter"
+                android:src="@drawable/calibrate_cross"/>
+            <ImageView
+                android:layout_marginLeft="104px"
+                android:layout_marginTop="624px"
+                android:id="@+id/LeftBottom"
+                android:layout_width="49px"
+                android:layout_height="49px"
+                android:src="@drawable/calibrate_cross"/>
+
+            <ImageView
+                android:layout_marginLeft="1128px"
+                android:layout_marginTop="48px"
+                android:id="@+id/RightTop"
+                android:layout_width="49px"
+                android:layout_height="49px"
+                android:src="@drawable/calibrate_cross"/>
+            <ImageView
+                android:layout_marginLeft="1128px"
+                android:layout_marginTop="624px"
+                android:id="@+id/RightBottom"
+                android:layout_width="49px"
+                android:layout_height="49px"
+                android:src="@drawable/calibrate_cross"/>
+
+            <ImageView
+                android:layout_marginLeft="616px"
+                android:layout_marginTop="336px"
+                android:id="@+id/Middle"
+                android:layout_width="49px"
+                android:layout_height="49px"
+    			android:src="@drawable/calibrate_cross"/>
+
+            <TextView
+                android:id="@+id/OK"
+                android:layout_width="30px"
+                android:layout_height="30px"
+                android:layout_marginLeft="390px"
+                android:visibility="gone"
+                android:layout_marginTop="15px"
+                android:text="@string/ok"
+                android:gravity="center"
+                 android:textColor="#FF000000"
+                android:textSize="18px"
+                />
+
+
+
+
+
+
+
+
+
+<!--        <ImageView-->
+<!-- -->
+<!--            android:layout_width="800px"-->
+<!--            android:layout_height="480px"-->
+<!--            android:layout_marginLeft="0px"-->
+<!--            android:layout_marginTop="0px"-->
+<!--            android:src="@drawable/calibrate_bg"/>-->
+<!--         -->
+<!--        <ImageView-->
+<!--            android:id="@+id/LeftTop"-->
+<!--            android:layout_width="49px"-->
+<!--            android:layout_height="49px"-->
+<!--            android:scaleType="fitCenter"-->
+<!--            android:layout_marginLeft="56px"-->
+<!--            android:layout_marginTop="24px"-->
+<!--            android:src="@drawable/calibrate_cross"/>-->
+<!--        <ImageView-->
+<!--            android:id="@+id/LeftBottom"-->
+<!--            android:layout_width="49px"-->
+<!--            android:layout_height="49px"-->
+<!--            android:layout_marginLeft="56px"-->
+<!--            android:layout_marginTop="408px"-->
+<!--            android:src="@drawable/calibrate_cross"/>-->
+<!-- -->
+<!--        <ImageView-->
+<!--            android:id="@+id/RightTop"-->
+<!--            android:layout_width="49px"-->
+<!--            android:layout_height="49px"-->
+<!--            android:layout_marginLeft="696px"-->
+<!--            android:layout_marginTop="24px"-->
+<!--            android:src="@drawable/calibrate_cross"/>-->
+<!--        <ImageView-->
+<!--            android:id="@+id/RightBottom"-->
+<!--            android:layout_width="49px"-->
+<!--            android:layout_height="49px"-->
+<!--            android:layout_marginLeft="696px"-->
+<!--            android:layout_marginTop="408px"-->
+<!--            android:src="@drawable/calibrate_cross"/>-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/Middle"-->
+<!--            android:layout_width="49px"-->
+<!--            android:layout_height="49px"-->
+<!--            android:layout_marginLeft="376px"-->
+<!--            android:layout_marginTop="216px"-->
+<!--			android:src="@drawable/calibrate_cross"/>-->
+<!--        -->
+<!--        <TextView -->
+<!--            android:id="@+id/OK"-->
+<!--            android:layout_width="30px"-->
+<!--            android:layout_height="30px"-->
+<!--            android:layout_marginLeft="390px"-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_marginTop="15px"-->
+<!--            android:text="@string/ok"-->
+<!--            android:gravity="center"-->
+<!--             android:textColor="#FF000000"-->
+<!--            android:textSize="18px"-->
+<!--            /> -->
+
+
+</RelativeLayout>
