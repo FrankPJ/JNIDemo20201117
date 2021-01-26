@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <android/log.h>
 #include <string>
+#include <extra.h>
 
 static const char *TAG="native-lib";
 #define LOGI(fmt, args...) __android_log_print(ANDROID_LOG_INFO,  TAG, fmt, ##args)
@@ -38,12 +39,7 @@ stringFromJNI(JNIEnv *env, jobject thiz) {
 }
 
 
-//#ifndef JNITUTORIAL_EXTRA_H
-//#define JNITUTORIAL_EXTRA_H
-const char * getString(){
-    return "string from extra";
-}
-//#endif //JNITUTORIAL_EXTRA_H
+
 
 extern "C" JNIEXPORT void JNICALL callPerson(JNIEnv* env,jobject jobject1)
 {
@@ -80,6 +76,7 @@ extern "C" JNIEXPORT void JNICALL callPerson(JNIEnv* env,jobject jobject1)
 jstring helloWorld(JNIEnv * env, __unused jobject thiz){
 
       std::string s=getString();
+//      std::string s="getString()";
     return env->NewStringUTF(s.c_str());
 
 }

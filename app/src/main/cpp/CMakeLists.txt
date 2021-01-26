@@ -17,13 +17,13 @@ project("jnidemo20201117")
 
 
 #file(GLOB SOURCE src/main/cpp/*.cpp src/main/cpp/*.h)
-add_library(
-        native-lib
-        SHARED
-        native-lib
-        # 引入 SOURCE 下的所有源文件
+#add_library(
+#        native-lib
+#        SHARED
+#        native-lib
+#         引入 SOURCE 下的所有源文件
 #        ${SOURCE}
-)
+#)
 #set_target_properties(native-lib PROPERTIES LINKER_LANGUAGE CXX)
 
 
@@ -44,12 +44,12 @@ add_library(
 # you want to add. CMake verifies that the library exists before
 # completing its build.
 
-find_library( # Sets the name of the path variable.
-        log-lib
+#find_library( # Sets the name of the path variable.
+#        log-lib
 
         # Specifies the name of the NDK library that
         # you want CMake to locate.
-        log)
+#        log)
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
@@ -73,9 +73,63 @@ find_library( # Sets the name of the path variable.
 # ==================引入外部 so end===================
 
 
-target_link_libraries( # Specifies the target library.
-        native-lib
+#target_link_libraries( # Specifies the target library.
+#        native-lib
 
         # Links the target library to the log library
         # included in the NDK.
-        ${log-lib})
+#        ${log-lib})
+
+# Copyright (c) 2014 Spotify AB
+#aux_source_directory(. DIR_LIB_SRCS)
+
+#ADD_LIBRARY(native-lib SHARED ${DIR_LIB_SRCS})
+
+#set(JNI_LIBS_DIR ${CMAKE_SOURCE_DIR}/../jniLibs)
+
+
+#file(GLOB libJniHelpers_SOURCES *.cpp)
+#file(GLOB libJniHelpers_HEADERS *.h)
+#
+#link_directories(${JNI_LIBRARIES})
+#add_library(jnidemo20201117 ${libJniHelpers_SOURCES} ${libJniHelpers_HEADERS})
+#
+#if(${UNIX})
+#    set(CMAKE_CXX_FLAGS "-fPIC")
+#    set_target_properties(jnidemo20201117 PROPERTIES CMAKE_SHARED_LINKER_FLAGS "-fPIC")
+#elseif(${WINDOWS})
+#    set(CMAKE_CXX_FLAGS "/MP /EHsc")
+#endif(${UNIX})
+
+
+
+
+
+
+
+
+#设置生成的so动态库最后输出的路径
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/../jniLibs/${ANDROID_ABI})
+
+
+
+
+#生成so动态库
+
+# 查找当前目录下的所有源文件，并保存到 DIR_LIB_SRCS 变量
+aux_source_directory(. DIR_LIB_SRCS)
+
+# 生成链接库
+ADD_LIBRARY(native-lib SHARED ${DIR_LIB_SRCS})
+
+# 导入当前目录下的所有头文件
+include_directories(.)
+
+find_library(log-lib log)
+
+target_link_libraries(native-lib ${log-lib})
+
+
+
+
+
