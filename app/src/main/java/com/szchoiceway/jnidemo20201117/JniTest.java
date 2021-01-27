@@ -5,7 +5,8 @@ package com.szchoiceway.jnidemo20201117;
  */
 public class JniTest {
 
-
+static {
+}
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
