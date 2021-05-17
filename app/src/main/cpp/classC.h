@@ -15,7 +15,6 @@ public:
 public:
     classC(const char *str, int age);
 
-
     const char* str ="sdfkhjsdhfkjsdfhskdjfhdskjfh";
 };
 

@@ -149,6 +149,8 @@ typedef struct {
 #define DISPLAY_Y 480
 
 
+//todo
+/*-----------------------需要1280x720分辨率的时候将此注释打开上面关闭--重新编译即可-------------*/
 //#define DISPLAY_X 1280
 //#define DISPLAY_Y 720
 
